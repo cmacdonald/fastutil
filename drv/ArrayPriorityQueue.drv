@@ -228,4 +228,20 @@ public class ARRAY_PRIORITY_QUEUE KEY_GENERIC implements PRIORITY_QUEUE KEY_GENE
 		array = KEY_GENERIC_ARRAY_CAST new KEY_TYPE[s.readInt()];
 		for(int i = 0; i < size; i++) array[i] = KEY_GENERIC_CAST s.READ_KEY();
 	}
+	
+	@Override
+	SUPPRESS_WARNINGS_KEY_UNCHECKED
+	public Object clone() throws CloneNotSupportedException {
+		try{
+			ARRAY_PRIORITY_QUEUE KEY_GENERIC rtr = (ARRAY_PRIORITY_QUEUE KEY_GENERIC)super.clone();
+			rtr.firstIndex = this.firstIndex;
+			rtr.firstIndexValid = this.firstIndexValid;
+			rtr.array = this.array.clone();
+			rtr.size = this.size;
+			rtr.c = this.c; //a comparator should be stateless, no need to clone
+			return rtr;
+		} catch (CloneNotSupportedException e) {
+			throw new InternalError(e.toString());
+		}
+	}
 }
