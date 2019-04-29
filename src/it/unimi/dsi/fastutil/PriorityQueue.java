@@ -37,7 +37,7 @@ import java.util.NoSuchElementException;
  * changed its relative position in the order}.
  */
 
-public interface PriorityQueue<K> {
+public interface PriorityQueue<K> extends Cloneable {
 
 	/** Enqueues a new element.
 	 *
