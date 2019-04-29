@@ -276,6 +276,20 @@ public class HEAP_PRIORITY_QUEUE KEY_GENERIC implements PRIORITY_QUEUE KEY_GENER
 		heap = KEY_GENERIC_ARRAY_CAST new KEY_TYPE[s.readInt()];
 		for(int i = 0; i < size; i++) heap[i] = KEY_GENERIC_CAST s.READ_KEY();
 	}
+	
+	@Override
+	SUPPRESS_WARNINGS_KEY_UNCHECKED
+	public Object clone() throws CloneNotSupportedException {
+		try{
+			HEAP_PRIORITY_QUEUE<K> rtr = (HEAP_PRIORITY_QUEUE<K>)super.clone();
+			rtr.heap = this.heap.clone();
+			rtr.size = this.size;
+			rtr.c = this.c; //a comparator should be stateless, no need to clone
+			return rtr;
+		} catch (CloneNotSupportedException e) {
+			throw new InternalError(e.toString());
+		}
+	}
 
 
 #ifdef TEST
